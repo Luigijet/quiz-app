@@ -1,6 +1,214 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @import "tailwindcss";
 
-:root {
+/* ================================
+   THEME TOKENS (Tailwind v4)
+================================ */
+@theme {
+  --color-primary: #5ec576;
+  --color-secondary: #ffcb03;
+  --color-tertiary: #ff585f;
+
+  --color-primary-darker: #4bbb7d;
+  --color-secondary-darker: #ffbb00;
+  --color-tertiary-darker: #fd424b;
+
+  --color-primary-opacity: #5ec5763a;
+  --color-secondary-opacity: #ffcd0331;
+  --color-tertiary-opacity: #ff58602d;
+
+  --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
+  --gradient-secondary: linear-gradient(to top left, #ffb003, #ffcb03);
+
+  --font-sans: "Poppins", sans-serif;
+}
+
+/* ================================
+   BASE STYLES
+================================ */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    color: #444;
+    line-height: 1.9;
+    background-color: #f3f3f3;
+  }
+}
+
+@layer components {
+  #welcome-section {
+    background-image: url("./assets/bg-welcome.svg");
+  }
+
+  #submit {
+    display: inline-block;
+    background-color: var(--color-primary);
+    font-weight: 500;
+    border: none;
+    padding: 14px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #f3f3f3;
+    width: 100%;
+  }
+
+  .btn {
+    display: inline-block;
+    background-color: var(--color-primary);
+    font-size: 1.6rem;
+    font-family: inherit;
+    font-weight: 500;
+    border: none;
+    padding: 1.25rem 4.5rem;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #f3f3f3;
+  }
+
+  .btn:hover {
+    background-color: var(--color-primary-darker);
+  }
+
+  .btn--text {
+    display: inline-block;
+    background: none;
+    font-size: 1.7rem;
+    font-family: inherit;
+    font-weight: 500;
+    color: var(--color-primary);
+    border: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .section {
+    padding: 15rem 3rem;
+    transition: transform 1s, opacity 0.5s;
+  }
+
+  .section--exit {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(-8rem);
+  }
+
+  .section--hidden {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    visibility: hidden;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transform: translateY(20rem);
+  }
+
+  #answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .answer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: #f1f5f9;
+    cursor: pointer;
+
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid #b3b7bd;
+
+    position: relative;
+  }
+
+  /* Hide default radio */
+  .answer input {
+    display: none;
+  }
+
+  /* Svg */
+  .answer svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: #444;
+  }
+
+  /* Hover */
+  .answer:hover {
+    background: #e2e8f0;
+  }
+
+  .answer .check {
+    display: none;
+  }
+
+  .answer .unchecked {
+    display: inline-block;
+  }
+
+  .answer input:checked ~ .check {
+    display: inline-block;
+  }
+
+  .answer input:checked ~ .unchecked {
+    display: none;
+  }
+
+  /* Selected */
+  .answer input:checked + span,
+  .answer input:checked {
+    background: red;
+  }
+
+  /* When selected */
+  .answer:has(input:checked) {
+    background: #d4dfee;
+    border: 1px solid #acc9f0;
+  }
+
+  /* Correct answer */
+  .answer.correct {
+    background: #9be15d;
+    color: #064e3b;
+  }
+
+  /* Correct + selected (final state) */
+  .answer.correct:has(input:checked) {
+    background: #22c55e;
+    color: white;
+  }
+
+  /* Optional wrong selection */
+  .answer.wrong:has(input:checked) {
+    background: #fecaca;
+    color: #7f1d1d;
+  }
 }

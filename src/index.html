@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Parcel Vanilla App</title>
-    <link href="./style.css" type="text/css" rel="stylesheet" />
-    <script type="module" src="./app.js"></script>
-  </head>
-  <body>
-    <h1 class="text-3xl font-bold underline text-red-300">Hello world!</h1>
-  </body>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizVM</title>
+  <link href="./style.css" type="text/css" rel="stylesheet" />
+  <script type="module" src="./app.js"></script>
+</head>
+
+<body>
+  <main class="overflow-hidden h-dvh relative">
+    <section id="welcome-section"
+      class="h-full flex items-center justify-center gap-4 bg-fixed bg-no-repeat bg-cover section">
+      <div class="flex flex-col items-center justify-center gap-6">
+        <h1 class="font-bold text-4xl">Welcome to QuizVM</h1>
+        <button class="btn" id="start">Start Quiz</button>
+      </div>
+    </section>
+
+    <section id="question-section"
+      class="h-full flex flex-col items-center justify-center gap-4 bg-fixed bg-no-repeat bg-cover section section--hidden">
+      <div class="max-w-lg w-full space-y-4">
+        <div id="question-container"></div>
+        <button id="submit">Submit</button>
+      </div>
+    </section>
+  </main>
+</body>
+
 </html>

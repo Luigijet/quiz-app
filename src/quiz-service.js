@@ -8,6 +8,5 @@ export async function fetchQuizQuestions() {
     throw new Error('Failed to fetch quiz questions');
   }
 
-  console.log(data);
   return data;
 }
