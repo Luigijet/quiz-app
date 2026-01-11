@@ -20,18 +20,17 @@ export class QuizController {
     try {
       await this.model.loadQuestions();
 
-      this.view.renderQuestion(
-        this.model.getCurrentQuestion()
-      );
+      this.view.renderQuestion(this.model.getCurrentQuestion());
 
-      this.view.renderQuestionIndex(this.model.currentIndex + 1, this.model.questions.length);
+      this.view.renderQuestionIndex(
+        this.model.currentIndex + 1,
+        this.model.questions.length
+      );
 
       // Small delay for UI animation
-      await new Promise(r => setTimeout(r, 200));
+      await new Promise((r) => setTimeout(r, 200));
 
-      this.view.welcomeSection.classList.remove(
-        'section--hidden'
-      );
+      this.view.welcomeSection.classList.remove('section--hidden');
     } catch (err) {
       alert(err);
     }
@@ -41,36 +40,27 @@ export class QuizController {
    * Handles quiz start button
    */
   handleStart() {
-    this.view.welcomeSection.classList.add(
-      'section--exit'
-    );
-    this.view.questionSection.classList.remove(
-      'section--hidden'
-    );
+    this.view.welcomeSection.classList.add('section--exit');
+    this.view.questionSection.classList.remove('section--hidden');
   }
 
   /**
    * Handles answer submission
    */
   handleSubmit() {
-    const selectedIndex =
-      this.view.getSelectedAnswerIndex();
+    const selectedIndex = this.view.getSelectedAnswerIndex();
 
     if (selectedIndex === null) {
-      this.view.showMessage('Please select an answer');
+      alert('Please select an answer');
       return;
     }
 
     this.model.submitAnswer(selectedIndex);
 
-    const correctIndex =
-      this.model.getCorrectAnswerIndex();
+    const correctIndex = this.model.getCorrectAnswerIndex();
 
     // Update UI feedback
-    this.view.showAnswerResult(
-      selectedIndex,
-      correctIndex
-    );
+    this.view.showAnswerResult(selectedIndex, correctIndex);
 
     // Toggle buttons
     this.view.submitBtn.classList.add('hidden');
@@ -91,12 +81,13 @@ export class QuizController {
     }
 
     // Render next question
-    this.view.renderQuestion(
-      this.model.getCurrentQuestion()
-    );
+    this.view.renderQuestion(this.model.getCurrentQuestion());
 
     // Render question index
-    this.view.renderQuestionIndex(this.model.currentIndex + 1, this.model.questions.length);
+    this.view.renderQuestionIndex(
+      this.model.currentIndex + 1,
+      this.model.questions.length
+    );
 
     // Reset buttons
     this.view.submitBtn.classList.remove('hidden');
@@ -104,9 +95,12 @@ export class QuizController {
   }
 
   /**
-  * Handles quiz reset
-  */
+   * Handles quiz reset
+   */
   async handleReset() {
+    // disable try again button
+    this.view.resetBtn.disabled = true;
+
     // Reset model state
     this.model.reset();
 
@@ -128,17 +122,20 @@ export class QuizController {
     this.view.welcomeSection.classList.remove('section--exit');
     this.view.scoreSection.classList.remove('section--exit');
 
-
     // Small delay for UI animation
-    await new Promise(r => setTimeout(r, 200));
+    await new Promise((r) => setTimeout(r, 200));
 
-    this.view.welcomeSection.classList.remove(
-      'section--hidden'
-    );
+    this.view.welcomeSection.classList.remove('section--hidden');
+
+    // enable try again button after fetching questions
+    this.view.resetBtn.disabled = false;
 
     // Render first question
-    this.view.renderQuestion(
-      this.model.getCurrentQuestion()
+    this.view.renderQuestion(this.model.getCurrentQuestion());
+
+    this.view.renderQuestionIndex(
+      this.model.currentIndex + 1,
+      this.model.questions.length
     );
   }
 }

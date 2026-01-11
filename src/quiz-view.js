@@ -18,9 +18,6 @@ export class QuizView {
     // Next question button
     this.nextBtn = document.querySelector('#next');
 
-    // Message area (errors, hints, feedback)
-    this.messageEl = document.querySelector('#message');
-
     // Score screen section
     this.scoreSection = document.querySelector('#score-section');
 
@@ -212,11 +209,4 @@ export class QuizView {
     this.scoreContainer.insertAdjacentHTML('afterbegin', HTML);
   }
 
-  /**
-   * Displays a message to the user
-   * @param {string} msg
-   */
-  showMessage(msg) {
-    this.messageEl.textContent = msg;
-  }
 }

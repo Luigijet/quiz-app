@@ -48,42 +48,6 @@
     background-image: url("./assets/bg-welcome.svg");
   }
 
-  #submit,
-  #reset {
-    display: inline-block;
-    background-color: var(--color-primary);
-    font-weight: 500;
-    border: none;
-    padding: 14px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    color: #f3f3f3;
-    width: 100%;
-  }
-
-  #submit:hover,
-  #reset:hover {
-    background-color: var(--color-primary-darker);
-  }
-
-  #next {
-    display: inline-block;
-    background-color: var(--color-secondary);
-    font-weight: 500;
-    border: none;
-    padding: 14px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    color: #f3f3f3;
-    width: 100%;
-  }
-
-  #next:hover {
-    background-color: var(--color-secondary-darker);
-  }
-
   .hidden {
     visibility: hidden;
     opacity: 0;
@@ -91,7 +55,7 @@
     position: absolute;
   }
 
-  .btn {
+  .btn--rounded {
     display: inline-block;
     background-color: var(--color-primary);
     font-size: 1.6rem;
@@ -105,26 +69,46 @@
     color: #f3f3f3;
   }
 
+  .btn--rounded:hover {
+    background-color: var(--color-primary-darker);
+  }
+
+  .btn {
+    display: inline-block;
+    background-color: var(--color-primary);
+    font-weight: 500;
+    border: none;
+    padding: 14px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #f3f3f3;
+    width: 100%;
+  }
+
   .btn:hover {
     background-color: var(--color-primary-darker);
   }
 
-  .btn--text {
+  .btn--secondary {
     display: inline-block;
-    background: none;
-    font-size: 1.7rem;
-    font-family: inherit;
+    background-color: var(--color-secondary);
     font-weight: 500;
-    color: var(--color-primary);
     border: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 2px;
+    padding: 14px 16px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
+    color: #f3f3f3;
+    width: 100%;
+  }
+
+  .btn--secondary:hover {
+    background-color: var(--color-secondary-darker);
   }
 
   .section {
-    padding: 15rem 3rem;
+    padding: 15rem 1rem;
     transition: transform 1s, opacity 0.5s;
   }
 
